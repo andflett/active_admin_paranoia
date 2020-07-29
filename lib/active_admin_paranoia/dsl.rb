@@ -46,7 +46,7 @@ module ActiveAdminParanoia
         end
       end
 
-      scope(I18n.t('active_admin_paranoia.non_archived'), default: true) { |scope| scope.where(resource_class.to_s.camelize.constantize.paranoia_column => resource_class.to_s.camelize.constantize.paranoia_sentinel_value) }
+      scope(I18n.t('active_admin_paranoia.non_archived'), default: true, group: :paranioa) { |scope| scope.where(resource_class.to_s.camelize.constantize.paranoia_column => resource_class.to_s.camelize.constantize.paranoia_sentinel_value) }
       scope(I18n.t('active_admin_paranoia.archived'), group: :paranioa) { |scope| scope.unscope(:where => resource_class.to_s.camelize.constantize.paranoia_column).where.not(resource_class.to_s.camelize.constantize.paranoia_column => resource_class.to_s.camelize.constantize.paranoia_sentinel_value) }
     end
   end
